@@ -1,0 +1,14 @@
+﻿# 文件夹
+/.idea/
+/out/
+/**/target/
+/**/.gradle/
+/**/build/
+
+# 项目
+/springboot_mail/
+/tree-spring-boot-starter/
+
+# 文件
+*.class
+*.iml
