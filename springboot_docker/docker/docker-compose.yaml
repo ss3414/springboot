@@ -1,0 +1,17 @@
+version: "3"
+services:
+  springboot_docker:
+    build:
+      context: "."
+      dockerfile: "Dockerfile"
+    container_name: "springboot_docker"
+    ports:
+      - "80:80"
+    networks:
+      - "docker_default"
+    external_links:
+      - "docker_mysql:mysql" # docker_mysql为容器内连接的别名，mysql为服务名？
+
+networks:
+  docker_default:
+    external: true
