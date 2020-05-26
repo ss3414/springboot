@@ -173,6 +173,7 @@ spring-project-tree包含thymeleaf依赖，父项目使用thymeleaf会报错（�
 JSON<br>
 上传下载<br>
 树形结构<br>
+超长字符串<br>
 PDF在线浏览<br>
 自定义资源类型+关联查询<br>
 

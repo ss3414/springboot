@@ -2,6 +2,8 @@
 
 server:
   port: 80 # 启动端口号
+  tomcat:
+    max-http-post-size: 1024MB # POST请求超长字符串（Java中切换Eclipse编译器）
 
 spring:
   # 模板引擎
@@ -20,3 +22,6 @@ spring:
       stat-view-servlet:
         enabled: true
         url-pattern: /druid/*
+  servlet:
+    multipart:
+      max-file-size: 1024MB # 上传文件最大尺寸

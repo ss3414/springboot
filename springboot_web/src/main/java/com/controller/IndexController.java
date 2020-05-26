@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mapper.NodeMapper;
 import com.mapper.type.TypeMetaMapper;
+import com.model.Form;
 import com.model.Node;
 import com.model.type.Type;
 import com.model.type.TypeMeta;
@@ -16,6 +17,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,6 +45,19 @@ public class IndexController {
     @RequestMapping("/ajax")
     public ModelAndView ajax() {
         return new ModelAndView("/ajax");
+    }
+
+    @ResponseBody
+    @RequestMapping("/form")
+    public Map<String, Object> form(Form form) {
+        return new LinkedHashMap<>();
+    }
+
+    /* fixme 接收AJAX发送的List */
+    @ResponseBody
+    @RequestMapping("/formList")
+    public Map<String, Object> formList(List<Form> formList) {
+        return new LinkedHashMap<>();
     }
 
     @RequestMapping("/cache")
@@ -252,6 +267,19 @@ public class IndexController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /* File/MultipartFile相互转换 */
+    @GetMapping("/convert")
+    public Map<String, Object> convert() throws IOException {
+        File input = new File("C:/Users/Administrator/Desktop/test.jpg");
+        MultipartFile multipartFile = new MockMultipartFile("test.jpg", new FileInputStream(input));
+
+        File output = new File("C:/Users/Administrator/Desktop/test2.jpg");
+        FileUtils.copyInputStreamToFile(multipartFile.getInputStream(), output);
+
+        Map<String, Object> map = new LinkedHashMap<>();
+        return map;
     }
 
 }
