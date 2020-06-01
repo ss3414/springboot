@@ -56,7 +56,8 @@ public class IndexController {
     /* fixme 接收AJAX发送的List */
     @ResponseBody
     @RequestMapping("/formList")
-    public Map<String, Object> formList(List<Form> formList) {
+    public Map<String, Object> formList(String formListStr) {
+        List<Form> formList = JSON.parseArray(formListStr, Form.class);
         return new LinkedHashMap<>();
     }
 

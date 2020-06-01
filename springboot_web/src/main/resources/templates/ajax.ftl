@@ -47,6 +47,10 @@
     //     console.log(data)
     // })
 
+    /*
+    * AJAX发送List
+    * ①表单参数序列化+List转字符串
+    * */
     function test() {
         let param = $("#form").serialize()
         console.log(param)
@@ -57,7 +61,7 @@
             pwdList += (name + ",")
         }
         pwdList = pwdList.replace(/,$/, "")
-        param = param + "&pwdList=" + pwdList /* AJAX发送List */
+        param = param + "&pwdList=" + pwdList
         console.log(param)
 
         $.ajax({
@@ -86,7 +90,8 @@
             type: "post",
             url: "/formList",
             data: {
-                formList: formList
+                // formList: formList,
+                formListStr: JSON.stringify(formList),
             },
             dataType: "json",
             success: function (response) {
