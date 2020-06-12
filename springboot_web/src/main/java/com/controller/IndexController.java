@@ -220,12 +220,14 @@ public class IndexController {
     }
 
     @PostMapping("/singleUpload")
-    public Map<String, Object> singleUpload(@RequestParam("uploadFile") MultipartFile uploadFile) {
+    public Map<String, Object> singleUpload(
+            Form form,
+            @RequestParam("uploadFile") MultipartFile uploadFile) {
         Map<String, Object> map = new LinkedHashMap<>();
         if (!uploadFile.isEmpty()) {
             try {
                 String filename = uploadFile.getOriginalFilename();
-                /* File.separator（跨平台通用分割符） */
+                /* File.separator（跨平台分隔符） */
                 uploadFile.transferTo(new File("C:/Users/Administrator/Desktop" + File.separator + filename));
                 map.put("result", "success");
             } catch (IOException e) {
@@ -237,7 +239,9 @@ public class IndexController {
     }
 
     @PostMapping("/batchUpload")
-    public Map<String, Object> batchUpload(@RequestParam("uploadFiles") MultipartFile[] uploadFiles) {
+    public Map<String, Object> batchUpload(
+            Form form,
+            @RequestParam("uploadFiles") MultipartFile[] uploadFiles) {
         Map<String, Object> map = new LinkedHashMap<>();
         if (uploadFiles.length > 0) {
             try {

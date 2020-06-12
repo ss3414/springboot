@@ -21,6 +21,7 @@
 
 <#--<div>-->
 <#--    <form action="/singleUpload" enctype="multipart/form-data" method="post">-->
+<#--        <input type="text" name="name"/>-->
 <#--        <input type="file" name="uploadFile"/>-->
 <#--        <input type="submit" value="单个上传"/>-->
 <#--    </form>-->
@@ -28,62 +29,66 @@
 
 <#--<div>-->
 <#--    <form action="/batchUpload" enctype="multipart/form-data" method="post">-->
-<#--        <input type="file" name="uploadFiles" multiple="multiple"/>-->
+<#--        <input type="file" multiple="multiple" name="uploadFiles"/>-->
 <#--        <input type="submit" value="批量上传"/>-->
 <#--    </form>-->
 <#--</div>-->
 
 <#--************************************************************分割线************************************************************-->
-<#-- fixme AJAX批量上传 -->
+<#-- todo AJAX上传 -->
 
-<#--<div>-->
-<#--    <form id="uploadForm" enctype="multipart/form-data">-->
-<#--        <input type="file" name="uploadFiles" multiple="multiple"/>-->
-<#--        <a href="javascript:void(0)" onclick="AJAXUpload()">AJAX批量上传</a>-->
-<#--    </form>-->
-<#--</div>-->
+<div>
+    <form id="uploadForm">
+        <input type="text" name="name"/>
+        <input id="uploadForm" type="file" name="uploadFiles" multiple="multiple"/>
+        <a href="javascript:void(0)" onclick="AJAXUpload()">AJAX上传</a>
+    </form>
+</div>
 
-<#--<script>-->
-<#--    function AJAXUpload() {-->
-<#--        console.log($("#uploadForm")[0])-->
-<#--        let formData = new FormData($("#uploadForm"))-->
-<#--        $.ajax({-->
-<#--            type: "post",-->
-<#--            url: "/batchUpload",-->
-<#--            data: formData,-->
-<#--            contentType: false,-->
-<#--            processData: false,-->
-<#--            success: function (data) {-->
-<#--                console.log(data)-->
-<#--            },-->
-<#--            error: function () {-->
-<#--            }-->
-<#--        })-->
-<#--    }-->
-<#--</script>-->
+<script>
+    function AJAXUpload() {
+        let input = $('<input>').attr("type", "hidden").attr("name", "name").val("456")
+        $("#uploadForm").append(input)
+        let formData = new FormData($("#uploadForm")[0])
+        console.log($("#uploadForm")[0])
+        console.log(formData)
+        // $.ajax({
+        //     type: "post",
+        //     url: "/batchUpload",
+        //     data: formData,
+        //     contentType: false,
+        //     processData: false,
+        //     success: function (data) {
+        //         console.log(data)
+        //     },
+        //     error: function () {
+        //     }
+        // })
+    }
+</script>
 
 <#--************************************************************分割线************************************************************-->
 <#-- todo LayUI上传 -->
 
-<a id="upload">上传</a>
+<#--<a id="upload">上传</a>-->
 
-<script>
-    layui.use(["upload"], function () {
-        let upload = layui.upload
+<#--<script>-->
+<#--    layui.use(["upload"], function () {-->
+<#--        let upload = layui.upload-->
 
-        upload.render({
-            elem: "#upload",
-            url: "/singleUpload",
-            exts: "jpg|pdf", /* 允许上传的文件类型 */
-            field: "uploadFile", /* 自定义上传文件名（对应MultipartFile文件名） */
-            done: function (res) {
-                console.log(res)
-            },
-            error: function () {
-            }
-        })
-    })
-</script>
+<#--        upload.render({-->
+<#--            elem: "#upload",-->
+<#--            url: "/singleUpload",-->
+<#--            exts: "jpg|pdf", /* 允许上传的文件类型 */-->
+<#--            field: "uploadFile", /* 自定义上传文件名（对应MultipartFile文件名） */-->
+<#--            done: function (res) {-->
+<#--                console.log(res)-->
+<#--            },-->
+<#--            error: function () {-->
+<#--            }-->
+<#--        })-->
+<#--    })-->
+<#--</script>-->
 
 <#--************************************************************分割线************************************************************-->
 <#-- todo 下载 -->
