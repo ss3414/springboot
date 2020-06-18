@@ -25,7 +25,7 @@ public class Application {
 
     /*
      * 服务器裸机部署方式
-     * ①Windows：编写包含（java -jar springboot_quickstart-1.0.jar）的bat脚本并使用AlwaysUp注册为服务
+     * ①Windows：用WinSW注册为服务
      * ②Linux：nohup java -jar springboot_quickstart-1.0.jar &
      * */
     public static void main(String[] args) {

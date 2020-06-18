@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -91,7 +92,7 @@ public class IndexController {
 
     /* 接收JSON（客户端以application/json+payload方式发送） */
     @PostMapping(value = "/requestJSON")
-    public Map<String, Object> requestJSON(@RequestBody String json) {
+    public Map<String, Object> requestJSON(@RequestBody JSONObject json) {
         Map<String, Object> map = new LinkedHashMap<>();
         map.put("status", 1000);
         return map;

@@ -1,0 +1,17 @@
+<service>
+
+    <id>quickstart</id>
+    <name>quickstart</name>
+    <description>quickstart</description>
+    <!--
+    ①WinSW.exe需要与XML同名
+    ②启动程序与参数（加入环境变量直接使用命令）
+    ③命令
+    安装：quickstart.exe install
+    卸载：quickstart.exe uninstall
+    -->
+    <!--<executable>java</executable>-->
+    <executable>C:\Program Files\Java\jdk1.8.0_161\bin\java.exe</executable>
+    <arguments>-jar springboot_quickstart-1.0.jar</arguments>
+
+</service>
