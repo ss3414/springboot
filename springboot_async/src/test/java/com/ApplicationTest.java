@@ -1,9 +1,10 @@
 package com;
 
-import com.client.Client1;
-import com.jdbc.JDBC1;
-import com.test.Task1;
-import com.test.Task2;
+import com.util.client.Client;
+import com.util.jdbc.JDBC;
+import com.util.test.Task1;
+import com.util.test.Task2;
+import javautil.test.Consume;
 import javautil.test.ConsumeExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,7 +29,7 @@ public class ApplicationTest {
      * ①task1()~task3()按顺序执行
      * */
 //    @Test
-//    @javautil.test.Consume(unit = "ms")
+//    @Consume(unit = "ms")
     public void test() throws InterruptedException {
         task1.task1();
         task1.task2();
@@ -46,7 +47,7 @@ public class ApplicationTest {
      * ②task1()~task3()需要返回值
      * */
 //    @Test
-//    @javautil.test.Consume(unit = "ms")
+//    @Consume(unit = "ms")
     public void test2() throws InterruptedException {
         Future<String> t1 = task2.task1();
         Future<String> t2 = task2.task2();
@@ -56,14 +57,13 @@ public class ApplicationTest {
             if (t1.isDone() && t2.isDone() && t3.isDone()) {
                 break;
             }
-            Thread.sleep(1000);
         }
     }
 
     /************************************************************分割线************************************************************/
 
     @Autowired
-    private Client1 client1;
+    private Client client;
 
     /*
      * todo 异步请求
@@ -71,38 +71,31 @@ public class ApplicationTest {
      * ②无论httpclient/asyncHttpClient均可异步（因为其所在方法为异步的）
      * */
 //    @Test
-//    @javautil.test.Consume(unit = "ms")
+//    @Consume(unit = "ms")
     public void test3() throws IOException, ExecutionException, InterruptedException {
-        Future<String> t1 = client1.httpclient("http://bbs.wuyou.net");
-        Future<String> t2 = client1.asyncHttpClient("http://bbs.wuyou.net");
+        Future<String> t1 = client.httpclient("http://bbs.wuyou.net");
+        Future<String> t2 = client.asyncHttpClient("http://bbs.wuyou.net");
         while (true) {
             if (t1.isDone() && t2.isDone()) {
                 break;
             }
-            Thread.sleep(1000);
         }
     }
 
     /************************************************************分割线************************************************************/
 
     @Autowired
-    private JDBC1 jdbc1;
+    private JDBC jdbc;
 
     /* todo 异步数据库查询 */
     @Test
-    @javautil.test.Consume(unit = "ms")
+    @Consume(unit = "ms")
     public void test4() {
-        long begin = System.currentTimeMillis();
-        Future<String> t1 = jdbc1.queryForList("SELECT * FROM github");
-        Future<String> t2 = jdbc1.queryForList("SELECT * FROM github");
+        Future<String> t1 = jdbc.list("SELECT * FROM github");
+        Future<String> t2 = jdbc.list("SELECT * FROM github");
         while (true) {
             if (t1.isDone() && t2.isDone()) {
                 break;
-            }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }

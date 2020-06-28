@@ -1,4 +1,4 @@
-package com.client;
+package com.util.client;
 
 import com.annotation.Consume;
 import org.apache.http.HttpResponse;
@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 @Component
-public class Client1 {
+public class Client {
 
     @Async
     @Consume(unit = "ms")

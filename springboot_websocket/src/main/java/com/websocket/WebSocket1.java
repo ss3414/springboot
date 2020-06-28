@@ -14,7 +14,7 @@ public class WebSocket1 {
 
     private Session session;
 
-    /* WebSocket无法直接注入 */
+    /* WebSocket中无法直接注入Bean */
     private static ApplicationContext applicationContext;
 
     public static void setApplicationContext(ApplicationContext applicationContext) {
@@ -28,9 +28,7 @@ public class WebSocket1 {
         System.out.println("WebSocket1 onOpen:" + this.session.getId());
         Util util = applicationContext.getBean(Util.class);
         util.test();
-        for (int i = 1; i < 10; i++) {
-            session.getBasicRemote().sendText("onOpen" + i);
-        }
+        session.getBasicRemote().sendText("onOpen");
     }
 
     @OnClose
@@ -43,7 +41,9 @@ public class WebSocket1 {
     public void onMessage(String message) throws IOException {
         System.out.println("WebSocket1 onMessage:" + session.getId());
         System.out.println(message);
-        session.getBasicRemote().sendText(message); /* 发送消息 */
+        for (int i = 1; i < 10; i++) {
+            session.getBasicRemote().sendText("onMessage" + i);
+        }
     }
 
     /* 必须包含参数（Throwable error），否则报错 */

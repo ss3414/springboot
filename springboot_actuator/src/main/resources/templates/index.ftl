@@ -8,10 +8,7 @@
 
 <table border="1">
     <tr>
-        <td><a href="/user">User</a></td>
-    </tr>
-    <tr>
-        <td><a href="/userPage">UserPage</a></td>
+        <td><a href="/user">user</a></td>
     </tr>
     <tr>
         <td><a href="/druid/index.html">Druid监控</a></td>

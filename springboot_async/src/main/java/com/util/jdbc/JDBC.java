@@ -1,4 +1,4 @@
-package com.jdbc;
+package com.util.jdbc;
 
 import com.annotation.Consume;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +12,14 @@ import java.util.Map;
 import java.util.concurrent.Future;
 
 @Component
-public class JDBC1 {
+public class JDBC {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Async
     @Consume(unit = "ms")
-    public Future<String> queryForList(String sql) {
+    public Future<String> list(String sql) {
         List<Map<String, Object>> mapList = jdbcTemplate.queryForList(sql);
         System.out.println(mapList.size());
         return new AsyncResult<>("");

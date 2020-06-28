@@ -123,7 +123,7 @@ SpringBoot中手动构造JavaMailSenderImpl（再从ApplicationContext中获取�
 # xkcoding
 ## springboot_websocket
 ①WebSocket<br>
-②@ServerEndpoint是Java EE原生WebSocket，@EnableWebSocket才是spring-websocket<br>
+②@ServerEndpoint是Java EE原生WebSocket，@EnableWebSocket是spring-websocket<br>
 
 ******************************************************************************************
 

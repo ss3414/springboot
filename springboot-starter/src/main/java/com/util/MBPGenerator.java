@@ -52,7 +52,7 @@ public class MBPGenerator {
             public void initMap() {
             }
         };
-        List<FileOutConfig> focList = new ArrayList<FileOutConfig>();
+        List<FileOutConfig> focList = new ArrayList<>();
         focList.add(new FileOutConfig("mapper.xml.ftl") { /* 模板要放在resources目录下 */
             @Override
             public String outputFile(TableInfo tableInfo) {

@@ -1,4 +1,4 @@
-package com.test;
+package com.util.test;
 
 import com.annotation.Consume;
 import org.springframework.scheduling.annotation.Async;

@@ -18,7 +18,7 @@
 
 <script>
     let websocket = null
-    let url = "ws://" + location.host + "/websocket1"
+    let url = "ws://" + location.host + ":" + location.port + "/websocket1"
 
     function connect() {
         if ("WebSocket" in window) {
