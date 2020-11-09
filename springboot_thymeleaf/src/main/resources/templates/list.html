@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>pwd</td>
+        <td>查看</td>
+        <td>删除</td>
+    </tr>
+    <tr th:each="bean:${pageBean.list}">
+        <td th:text="${bean.id}"></td>
+        <td th:text="${bean.name}"></td>
+        <td th:text="${bean.password}"></td>
+        <td><a th:href="@{'/user?id='+${bean.id}}">查看</a></td>
+        <td><a th:href="@{'/delete?id='+${bean.id}}">删除</a></td>
+    </tr>
+</table>
+
+<div class="page">
+    <span>共<th:block th:text="${pageBean.totalRecord}"/>条记录 <th:block th:text="${pageBean.currentPage}"/>/<th:block th:text="${pageBean.totalPage}"/></span>
+    <a th:href="@{'/list?currentPage=1'}">第一页</a>
+    <th:block th:each="i:${#numbers.sequence(pageBean.beginPage,pageBean.endPage)}">
+        <a th:href="@{'/list?currentPage='+${i}}"><span><th:block th:text="${i}"/></span></a>
+    </th:block>
+    <a th:href="@{'/list?currentPage='+${pageBean.currentPage+1}}">下一页</a>
+    <a th:href="@{'/list?currentPage='+${pageBean.totalPage}}">最后一页</a>
+</div>
+
+</body>
+</html>

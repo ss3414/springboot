@@ -1,0 +1,10 @@
+# ************************************************************分割线************************************************************
+
+server:
+  port: 80 # 启动端口号
+
+# FreeMarker
+spring:
+  freemarker:
+    suffix: .ftl
+    template-loader-path: classpath:/templates

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- 输出到控制台 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%thread] %5level %d{yyyy-MM-dd HH:mm:ss} %class %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 输出到文件 -->
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>springboot.log</file>
+        <encoder>
+            <pattern>[%thread] %5level %d{yyyy-MM-dd HH:mm:ss} %class %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- fixme 输出到数据库 -->
+    <appender name="db" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+            <url>jdbc:mysql://127.0.0.1:3306/untitled?useSSL=false</url>
+            <user>root</user>
+            <password>2468</password>
+            <driverClass>com.mysql.jdbc.Driver</driverClass>
+        </connectionSource>
+    </appender>
+
+    <!--<logger name="com.mapper" level="DEBUG"/>-->
+    <logger name="com" level="DEBUG"/>
+
+    <root level="ERROR">
+        <appender-ref ref="console"/>
+    </root>
+
+</configuration>
