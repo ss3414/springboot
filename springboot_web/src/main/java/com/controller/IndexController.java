@@ -248,8 +248,8 @@ public class IndexController {
         if (!uploadFile.isEmpty()) {
             try {
                 String filename = uploadFile.getOriginalFilename();
-                /* File.separator（跨平台分隔符） */
-                uploadFile.transferTo(new File("C:/Users/Administrator/Desktop" + File.separator + filename));
+//                uploadFile.transferTo(new File("C:/Users/Administrator/Desktop" + File.separator + filename));
+                uploadFile.transferTo(new File("/home/fantasy/Desktop" + File.separator + filename));
                 map.put("status", 1000);
 
                 /* 在Spring中使用EasyExcel */
@@ -293,6 +293,11 @@ public class IndexController {
             XSSFWorkbook workbook = new XSSFWorkbook();
             workbook.createSheet("Sheet1");
             workbook.write(outputStream);
+
+            /* 新建文本文件并下载 */
+//            OutputStream outputStream = response.getOutputStream();
+//            outputStream.write("".getBytes(StandardCharsets.UTF_8));
+//            response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("test.txt", "UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
         }
