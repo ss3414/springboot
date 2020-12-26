@@ -52,14 +52,12 @@ public class IndexController {
         return new ModelAndView("/ajax");
     }
 
-    @ResponseBody
     @RequestMapping("/form")
     public Map<String, Object> form(Form form) {
         return new LinkedHashMap<>();
     }
 
     /* fixme 接收AJAX发送的List */
-    @ResponseBody
     @RequestMapping("/formList")
     public Map<String, Object> formList(String formListStr) {
         List<Form> formList = JSON.parseArray(formListStr, Form.class);
@@ -86,7 +84,6 @@ public class IndexController {
     }
 
     /* 返回JSON */
-    @ResponseBody
     @RequestMapping("/responseJSON")
     public Map<String, Object> responseJSON() {
         Map<String, Object> map = new LinkedHashMap<>();
