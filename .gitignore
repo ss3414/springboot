@@ -1,0 +1,11 @@
+﻿# 文件夹
+/.idea/
+/**/target/
+/**/.gradle/
+/**/build/
+
+# 项目
+/springboot_mail/
+
+# 文件
+*.iml
