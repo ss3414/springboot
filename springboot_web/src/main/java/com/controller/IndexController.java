@@ -33,6 +33,8 @@ import java.io.*;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 @CrossOrigin
 @RestController
@@ -255,8 +257,8 @@ public class IndexController {
         if (!uploadFile.isEmpty()) {
             try {
                 String filename = uploadFile.getOriginalFilename();
-//                uploadFile.transferTo(new File("C:/Users/Administrator/Desktop" + File.separator + filename));
-                uploadFile.transferTo(new File("/home/fantasy/Desktop" + File.separator + filename));
+                uploadFile.transferTo(new File("C:/Users/Administrator/Desktop" + File.separator + filename));
+//                uploadFile.transferTo(new File("/home/fantasy/Desktop" + File.separator + filename));
                 map.put("status", 1000);
 
                 /* 在Spring中使用EasyExcel */
@@ -295,16 +297,27 @@ public class IndexController {
             HttpServletResponse response,
             @RequestParam(defaultValue = "表格.xlsx") String CN) {
         try {
-            OutputStream outputStream = response.getOutputStream();
-            response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(CN, "UTF-8"));
-            XSSFWorkbook workbook = new XSSFWorkbook();
-            workbook.createSheet("Sheet1");
-            workbook.write(outputStream);
-
-            /* 新建文本文件并下载 */
 //            OutputStream outputStream = response.getOutputStream();
-//            outputStream.write("".getBytes(StandardCharsets.UTF_8));
-//            response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("test.txt", "UTF-8"));
+//            response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(CN, "UTF-8"));
+//            XSSFWorkbook workbook = new XSSFWorkbook();
+//            workbook.createSheet("Sheet1");
+//            workbook.write(outputStream);
+
+            /* 新建Zip文件并下载 */
+            File file = new File("C:/Users/Administrator/Desktop/test.txt");
+            InputStream inputStream = new FileInputStream(file);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ZipOutputStream zipOutputStream = new ZipOutputStream(byteArrayOutputStream);
+            zipOutputStream.putNextEntry(new ZipEntry(file.getName()));
+            int temp = 0;
+            while ((temp = inputStream.read()) != -1) {
+                zipOutputStream.write(temp);
+            }
+            OutputStream outputStream = new BufferedOutputStream(response.getOutputStream());
+            outputStream.write(byteArrayOutputStream.toByteArray());
+            outputStream.flush();
+            response.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE);
+            response.addHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + URLEncoder.encode("test.zip", "UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
         }

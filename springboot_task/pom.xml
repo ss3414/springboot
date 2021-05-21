@@ -82,19 +82,4 @@
 
     </dependencies>
 
-    <build>
-        <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>${project.basedir}/src/main/resources</directory>
-            </resource>
-        </resources>
-        <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
-        <testResources>
-            <testResource>
-                <directory>${project.basedir}/src/test/resources</directory>
-            </testResource>
-        </testResources>
-    </build>
-
 </project>

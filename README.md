@@ -6,8 +6,8 @@ SpringBoot<br>
 # springboot_actuator
 ①日志+监控<br>
 ②SpringBoot war<br>
- pom.xml中<packaging>war</packaging>+provided spring-boot-starter-tomcat+屏蔽hibernate-validator<br>
- Application extends SpringBootServletInitializer<br>
+pom.xml中<packaging>war</packaging>+provided spring-boot-starter-tomcat+屏蔽hibernate-validator<br>
+Application extends SpringBootServletInitializer<br>
 ③日志<br>
 SSM：Tomcat+项目日志（Log4J）<br>
 SpringBoot：项目日志（LogBack+SLF4J）<br>
@@ -32,7 +32,6 @@ MyPerf4J<br>
 ①异步<br>
 ②@EnableAsync+@Async+Future<br>
 ③使用@Async注解（Spring对Java异步的封装）<br>
-（Future是一种异步模型）<br>
 ④归档<br>
 test：任意IO操作<br>
 client：网络请求（HttpClient）<br>
@@ -68,14 +67,6 @@ Maven Docker插件将项目推送到Docker仓库<br>
 ②归档<br>
 @RestControllerAdvice注解（Handler增强）<br>
 @Advice注解只能用于Spring Web，可以使用AOP将异常处理扩大到非Web领域<br>
-
-# springboot_kaptcha
-①Kaptcha验证码<br>
-②归档<br>
-图床/文件在线浏览<br>
-
-# springboot_log
-①日志<br>
 
 # springboot_mail
 ①邮件<br>

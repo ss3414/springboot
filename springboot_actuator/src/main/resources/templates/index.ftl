@@ -11,6 +11,9 @@
         <td><a href="/user">user</a></td>
     </tr>
     <tr>
+        <td><a href="/error">error</a></td>
+    </tr>
+    <tr>
         <td><a href="/druid/index.html">Druid监控</a></td>
     </tr>
 </table>

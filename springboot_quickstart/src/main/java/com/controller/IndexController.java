@@ -14,7 +14,7 @@ public class IndexController {
     @ResponseBody /* 指定响应体为方法的返回值（Map自动转JSON） */
     @RequestMapping("/")
     public Map index() {
-        Map map = new HashMap();
+        Map map = new LinkedHashMap();
         map.put("status", 1000);
         return map;
     }

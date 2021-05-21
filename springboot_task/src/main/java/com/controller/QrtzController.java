@@ -63,7 +63,7 @@ public class QrtzController {
             }
         }
 
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         return map;
     }
 
@@ -77,7 +77,7 @@ public class QrtzController {
                 .build();
         scheduler.rescheduleJob(triggerKey, trigger);
 
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         return map;
     }
 
@@ -87,7 +87,7 @@ public class QrtzController {
         JobKey jobKey = JobKey.jobKey(jobName);
         scheduler.triggerJob(jobKey);
 
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         return map;
     }
 
@@ -97,7 +97,7 @@ public class QrtzController {
         JobKey jobKey = JobKey.jobKey(jobName);
         scheduler.pauseJob(jobKey);
 
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         return map;
     }
 
@@ -107,7 +107,7 @@ public class QrtzController {
         JobKey jobKey = JobKey.jobKey(jobName);
         scheduler.resumeJob(jobKey);
 
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         return map;
     }
 
@@ -117,7 +117,7 @@ public class QrtzController {
         JobKey jobKey = JobKey.jobKey(jobName);
         scheduler.deleteJob(jobKey);
 
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         return map;
     }
 
