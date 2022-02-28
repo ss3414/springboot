@@ -58,11 +58,6 @@
             <artifactId>swagger-spring-boot-starter</artifactId>
             <version>1.9.0.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.treeleafj</groupId>
-            <artifactId>spring-boot-starter-xDoc</artifactId>
-            <version>1.0.0</version>
-        </dependency>
 
         <!-- 工具 -->
         <dependency>
@@ -83,20 +78,5 @@
         </dependency>
 
     </dependencies>
-
-    <build>
-        <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>${project.basedir}/src/main/resources</directory>
-            </resource>
-        </resources>
-        <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
-        <testResources>
-            <testResource>
-                <directory>${project.basedir}/src/test/resources</directory>
-            </testResource>
-        </testResources>
-    </build>
 
 </project>
