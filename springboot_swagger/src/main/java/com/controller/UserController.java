@@ -5,7 +5,7 @@ import com.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +45,7 @@ public class UserController {
     @DeleteMapping(value = "/{id}")
     public Map delete(@PathVariable Long id) {
         userDao.deleteById(id);
-        Map map = new HashMap();
+        Map map = new LinkedHashMap();
         map.put("result", "删除成功");
         return map;
     }

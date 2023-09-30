@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestController
@@ -32,10 +32,7 @@ public class IndexController {
     @RequestMapping("/para")
     public Map para(String test) {
         System.out.println(test);
-
-        Map map = new HashMap();
-        map.put("status", 1000);
-        return map;
+        return new LinkedHashMap();
     }
 
     /* para2()：getParameterValues（依次获取test/test2值） */
@@ -44,7 +41,7 @@ public class IndexController {
         System.out.println(test1);
         System.out.println(test2);
 
-        Map map = new HashMap();
+        Map map = new LinkedHashMap();
         map.put("status", 1000);
         return map;
     }

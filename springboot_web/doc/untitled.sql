@@ -8,42 +8,42 @@ todo 动态表结构
 
 /* 字段类型 */
 CREATE TABLE `field`  (
-  `field_id` int(11) NOT NULL AUTO_INCREMENT,
-  `field_type` int(11) NULL DEFAULT 0,
-  `field_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '',
-  PRIMARY KEY (`field_id`) USING BTREE
+`field_id` int(11) NOT NULL AUTO_INCREMENT,
+`field_type` int(11) NULL DEFAULT 0,
+`field_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '',
+PRIMARY KEY (`field_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 /* 资源类型元数据 */
 CREATE TABLE `type_meta`  (
-  `type_meta_id` int(11) NOT NULL AUTO_INCREMENT,
-  `type_meta_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '',
-  PRIMARY KEY (`type_meta_id`) USING BTREE
+`type_meta_id` int(11) NOT NULL AUTO_INCREMENT,
+`type_meta_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '',
+PRIMARY KEY (`type_meta_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 /* 资源类型字段 */
 CREATE TABLE `type_field`  (
-  `type_field_id` int(11) NOT NULL AUTO_INCREMENT,
-  `type_field_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '',
-  `field_id` int(11) NULL DEFAULT 0,
-  `type_meta_id` int(11) NULL DEFAULT 0,
-  PRIMARY KEY (`type_field_id`) USING BTREE
+`type_field_id` int(11) NOT NULL AUTO_INCREMENT,
+`type_field_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '',
+`field_id` int(11) NULL DEFAULT 0,
+`type_meta_id` int(11) NULL DEFAULT 0,
+PRIMARY KEY (`type_field_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 /* 资源元数据 */
 CREATE TABLE `resource_meta`  (
-  `resource_meta_id` int(11) NOT NULL AUTO_INCREMENT,
-  `resource_meta_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '',
-  PRIMARY KEY (`resource_meta_id`) USING BTREE
+`resource_meta_id` int(11) NOT NULL AUTO_INCREMENT,
+`resource_meta_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '',
+PRIMARY KEY (`resource_meta_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 /* 资源字段 */
 CREATE TABLE `resource_field`  (
-  `resource_field_id` int(11) NOT NULL AUTO_INCREMENT,
-  `resource_field_content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
-  `type_field_id` int(11) NULL DEFAULT 0,
-  `resource_meta_id` int(11) NULL DEFAULT 0,
-  PRIMARY KEY (`resource_field_id`) USING BTREE
+`resource_field_id` int(11) NOT NULL AUTO_INCREMENT,
+`resource_field_content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+`type_field_id` int(11) NULL DEFAULT 0,
+`resource_meta_id` int(11) NULL DEFAULT 0,
+PRIMARY KEY (`resource_field_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 /************************************************************半分割线******************************/
@@ -78,11 +78,11 @@ WHERE a.resource_meta_id = b.resource_meta_id AND b.type_field_id = c.type_field
 /* todo 节点 */
 
 CREATE TABLE `node`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_id` int(11) NULL DEFAULT 0,
-  `level` int(11) NULL DEFAULT 1, /* 树深度 */
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '',
-  PRIMARY KEY (`id`) USING BTREE
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`parent_id` int(11) NULL DEFAULT 0,
+`level` int(11) NULL DEFAULT 1, /* 树深度 */
+`title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '',
+PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 INSERT INTO `node`(`id`, `parent_id`, `level`, `title`) VALUES (1, 0, 1, '父节点');

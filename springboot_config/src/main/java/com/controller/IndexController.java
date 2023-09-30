@@ -9,7 +9,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +19,7 @@ import java.net.Inet4Address;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -28,7 +27,7 @@ import java.util.Properties;
 @RequestMapping("")
 public class IndexController {
 
-    @GetMapping("/")
+    @RequestMapping("/")
     public ModelAndView index() {
         return new ModelAndView("/index");
     }
@@ -43,9 +42,9 @@ public class IndexController {
     @Autowired(required = false)
     private User user;
 
-    @GetMapping("/user")
+    @RequestMapping("/user")
     public Map user() {
-        Map map = new HashMap();
+        Map map = new LinkedHashMap();
         map.put("id", user.getId());
         map.put("name", user.getName());
         map.put("pwd", user.getPassword());
@@ -58,9 +57,9 @@ public class IndexController {
     private Environment environment;
 
     /* 获取服务端IP地址+端口号 */
-    @GetMapping("/server")
+    @RequestMapping("/server")
     public Map server(HttpServletRequest request) throws UnknownHostException {
-        Map map = new HashMap();
+        Map map = new LinkedHashMap();
         map.put("address1", request.getLocalAddr());
         map.put("address2", Inet4Address.getLocalHost().getHostAddress());
         map.put("port", environment.getProperty("local.server.port"));
@@ -68,18 +67,18 @@ public class IndexController {
     }
 
     /* 获取服务端时间 */
-    @GetMapping("/time")
+    @RequestMapping("/time")
     public Map time() {
         LocalDateTime localDateTime = LocalDateTime.now();
         String time = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-        Map map = new HashMap();
+        Map map = new LinkedHashMap();
         map.put("time", time);
         return map;
     }
 
     /* 获取外网IP */
-    @GetMapping("/ip")
+    @RequestMapping("/ip")
     public Map ip() throws IOException {
         JSONObject jsonObject = null;
         CloseableHttpClient client = HttpClients.createDefault();
@@ -87,7 +86,7 @@ public class IndexController {
         HttpResponse response = client.execute(get);
         jsonObject = JSONObject.parseObject(EntityUtils.toString(response.getEntity()));
 
-        Map map = new HashMap();
+        Map map = new LinkedHashMap();
         map.put("ip", jsonObject.getString("origin"));
         return map;
     }
@@ -98,9 +97,9 @@ public class IndexController {
      * ②生产环境：jar:file:/app.jar!/BOOT-INF/classes!/
      * ③不要用文件输入流读取配置，直接用ClassLoader().getResourceAsStream读取配置
      * */
-    @GetMapping("/resource")
+    @RequestMapping("/resource")
     public Map<String, Object> resource() {
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         try {
             Properties properties = new Properties();
             properties.load(IndexController.class.getResourceAsStream("/application.properties"));

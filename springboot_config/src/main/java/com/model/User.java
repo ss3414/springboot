@@ -19,7 +19,7 @@ public class User {
     @Value("${model.user.name}")
     private String name;
 
-    //    @Value("${model.user.password}")
+    @Value("${model.user.password}")
     private String password;
 
 }

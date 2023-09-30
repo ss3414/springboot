@@ -68,6 +68,9 @@ Maven Docker插件将项目推送到Docker仓库<br>
 @RestControllerAdvice注解（Handler增强）<br>
 @Advice注解只能用于Spring Web，可以使用AOP将异常处理扩大到非Web领域<br>
 
+# springboot_job
+xxl-job（分布式任务）<br>
+
 # springboot_mail
 ①邮件<br>
 ②归档<br>
@@ -78,9 +81,15 @@ Spring中手动构造JavaMailSenderImpl<br>
 SpringBoot中手动构造JavaMailSenderImpl（再从ApplicationContext中获取）<br>
 （MailConfig：配置多邮箱）<br>
 
+# springboot_nacos
+①SpringBoot+Nacos<br>
+②配置管理<br>
+http://127.0.0.1/config/get <br>
+③服务发现<br>
+http://127.0.0.1/discovery/get?serviceName=example <br>
+
 # springboot_quickstart
-①SpringBoot（JDK8）<br>
-②快速入门（最简SpringBoot Web示例）<br>
+快速入门（最简SpringBoot Web示例）<br>
 
 # springboot_runner
 ①初始化资源<br>
@@ -99,17 +108,16 @@ HTML不支持put/delete<br>
 ③Quartz+数据库（MBP）<br>
 
 # springboot_test
-①测试<br>
-②Test启动Spring容器<br>
-
-# springboot_thymeleaf
-①Thymeleaf<br>
+Test启动Spring容器<br>
 
 # springboot_tree
 ①AOP查看方法调用链<br>
 ②spring-project-tree<br>
 spring-project-tree包含thymeleaf依赖，父项目使用thymeleaf会报错（父项目使用freemarker）<br>
 @EnableProjectTree AOP切面表达式（不能包含Application）<br>
+
+# springboot_undertow
+①Undertow替换Tomcat<br>
 
 # springboot_validate
 ①表单验证<br>

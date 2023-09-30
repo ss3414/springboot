@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modules>
+        <module>springboot-starter</module>
+        <module>springboot_actuator</module>
+        <module>springboot_admin</module>
+        <module>springboot_aop</module>
+        <module>springboot_async</module>
+        <module>springboot_config</module>
+        <module>springboot_cors</module>
+        <module>springboot_docker</module>
+        <module>springboot_exception</module>
+        <module>springboot_job</module>
+        <module>springboot_mail</module>
+        <module>springboot_nacos</module>
+        <module>springboot_quickstart</module>
+        <module>springboot_runner</module>
+        <module>springboot_swagger</module>
+        <module>springboot_task</module>
+        <module>springboot_test</module>
+        <module>springboot_tree</module>
+        <module>springboot_undertow</module>
+        <module>springboot_validate</module>
+        <module>springboot_web</module>
+        <module>springboot_websocket</module>
+        <module>springboot_xss</module>
+    </modules>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com</groupId>
+    <artifactId>springboot</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+</project>

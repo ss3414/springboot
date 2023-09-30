@@ -4,12 +4,11 @@ import com.task.QuartzJob;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestController
@@ -41,13 +40,8 @@ public class QrtzController {
     @PostMapping("/create")
     public Map<String, Object> create(String jobName, String cronExpression) {
         try {
-            JobDetail jobDetail = JobBuilder.newJob(QuartzJob.class) /* 定时任务 */
-                    .withIdentity(jobName)
-                    .build();
-            Trigger trigger = TriggerBuilder.newTrigger()
-                    .withIdentity(jobName)
-                    .withSchedule(CronScheduleBuilder.cronSchedule(cronExpression))
-                    .build();
+            JobDetail jobDetail = JobBuilder.newJob(QuartzJob.class) /* 定时任务 */.withIdentity(jobName).build();
+            Trigger trigger = TriggerBuilder.newTrigger().withIdentity(jobName).withSchedule(CronScheduleBuilder.cronSchedule(cronExpression)).build();
             scheduler.scheduleJob(jobDetail, trigger);
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,63 +56,48 @@ public class QrtzController {
                     System.out.println("其他异常");
             }
         }
-
-        Map<String, Object> map = new LinkedHashMap<>();
-        return map;
+        return new LinkedHashMap<>();
     }
 
     /* 修改 */
     @PostMapping("/update")
     public Map<String, Object> update(String jobName, String cronExpression) throws SchedulerException {
         TriggerKey triggerKey = TriggerKey.triggerKey(jobName);
-        Trigger trigger = TriggerBuilder.newTrigger()
-                .withIdentity(jobName)
-                .withSchedule(CronScheduleBuilder.cronSchedule(cronExpression))
-                .build();
+        Trigger trigger = TriggerBuilder.newTrigger().withIdentity(jobName).withSchedule(CronScheduleBuilder.cronSchedule(cronExpression)).build();
         scheduler.rescheduleJob(triggerKey, trigger);
-
-        Map<String, Object> map = new LinkedHashMap<>();
-        return map;
+        return new LinkedHashMap<>();
     }
 
     /* 立即执行 */
-    @GetMapping("/trigger")
+    @RequestMapping("/trigger")
     public Map<String, Object> trigger(String jobName) throws SchedulerException {
         JobKey jobKey = JobKey.jobKey(jobName);
         scheduler.triggerJob(jobKey);
-
-        Map<String, Object> map = new LinkedHashMap<>();
-        return map;
+        return new LinkedHashMap<>();
     }
 
     /* 暂停 */
-    @GetMapping("/pause")
+    @RequestMapping("/pause")
     public Map<String, Object> pause(String jobName) throws SchedulerException {
         JobKey jobKey = JobKey.jobKey(jobName);
         scheduler.pauseJob(jobKey);
-
-        Map<String, Object> map = new LinkedHashMap<>();
-        return map;
+        return new LinkedHashMap<>();
     }
 
     /* 恢复 */
-    @GetMapping("/resume")
+    @RequestMapping("/resume")
     public Map<String, Object> resume(String jobName) throws SchedulerException {
         JobKey jobKey = JobKey.jobKey(jobName);
         scheduler.resumeJob(jobKey);
-
-        Map<String, Object> map = new LinkedHashMap<>();
-        return map;
+        return new LinkedHashMap<>();
     }
 
     /* 删除 */
-    @GetMapping("/delete")
+    @RequestMapping("/delete")
     public Map<String, Object> delete(String jobName) throws SchedulerException {
         JobKey jobKey = JobKey.jobKey(jobName);
         scheduler.deleteJob(jobKey);
-
-        Map<String, Object> map = new LinkedHashMap<>();
-        return map;
+        return new LinkedHashMap<>();
     }
 
 }

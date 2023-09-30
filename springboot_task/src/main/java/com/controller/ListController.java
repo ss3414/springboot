@@ -11,13 +11,11 @@ import com.model.QrtzJobDetails;
 import com.model.QrtzTriggers;
 import com.task.ScheduledTask;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +36,7 @@ public class ListController {
     @Autowired
     private QrtzFiredTriggersMapper qrtzFiredTriggersMapper;
 
-    @GetMapping("/listJob")
+    @RequestMapping("/listJob")
     public Map<String, Object> listJob() {
         List<QrtzJobDetails> qrtzJobDetailsList = qrtzJobDetailsMapper.selectList(new QueryWrapper<>());
 
@@ -47,7 +45,7 @@ public class ListController {
         return map;
     }
 
-    @GetMapping("/listTrigger")
+    @RequestMapping("/listTrigger")
     public Map<String, Object> listTrigger() {
         List<QrtzTriggers> qrtzTriggersList = qrtzTriggersMapper.selectList(new QueryWrapper<>());
 
@@ -56,7 +54,7 @@ public class ListController {
         return map;
     }
 
-    @GetMapping("/listCron")
+    @RequestMapping("/listCron")
     public Map<String, Object> listCron() {
         List<QrtzCronTriggers> qrtzCronTriggersList = qrtzCronTriggersMapper.selectList(new QueryWrapper<>());
 
@@ -65,7 +63,7 @@ public class ListController {
         return map;
     }
 
-    @GetMapping("/listFired")
+    @RequestMapping("/listFired")
     public Map<String, Object> listFired() {
         List<QrtzFiredTriggers> qrtzFiredTriggersList = qrtzFiredTriggersMapper.selectList(new QueryWrapper<>());
 
@@ -79,7 +77,7 @@ public class ListController {
     @Autowired
     private ScheduledTask scheduledTask;
 
-    @GetMapping("/listScheduled")
+    @RequestMapping("/listScheduled")
     public ModelAndView listScheduled() {
         Method[] methods = ScheduledTask.class.getDeclaredMethods();
         ModelAndView view = new ModelAndView();
@@ -88,7 +86,7 @@ public class ListController {
         return view;
     }
 
-    @GetMapping("/execute")
+    @RequestMapping("/execute")
     public Map<String, Object> execute(String methodName) {
         try {
             Method method = scheduledTask.getClass().getDeclaredMethod(methodName, null);

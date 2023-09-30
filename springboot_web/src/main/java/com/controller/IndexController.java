@@ -31,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.zip.ZipEntry;
@@ -137,7 +138,7 @@ public class IndexController {
         HttpEntity entity = httpResponse.getEntity();
         InputStream inputStream = entity.getContent();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        Integer length = 0;
+        int length = 0;
         byte[] buffer = new byte[1024];
         while ((length = inputStream.read(buffer)) != -1) {
             byteArrayOutputStream.write(buffer, 0, length);
@@ -205,8 +206,7 @@ public class IndexController {
     /* 自定义资源 */
     @GetMapping("/resource")
     public Map<String, Object> resource() {
-        Map<String, Object> map = new LinkedHashMap<>();
-        return map;
+        return new LinkedHashMap<>();
     }
 
     /************************************************************分割线************************************************************/
@@ -305,7 +305,7 @@ public class IndexController {
 
             /* 新建Zip文件并下载 */
             File file = new File("C:/Users/Administrator/Desktop/test.txt");
-            InputStream inputStream = new FileInputStream(file);
+            InputStream inputStream = Files.newInputStream(file.toPath());
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ZipOutputStream zipOutputStream = new ZipOutputStream(byteArrayOutputStream);
             zipOutputStream.putNextEntry(new ZipEntry(file.getName()));
@@ -374,13 +374,12 @@ public class IndexController {
     @GetMapping("/convert")
     public Map<String, Object> convert() throws IOException {
         File input = new File("C:/Users/Administrator/Desktop/test.jpg");
-        MultipartFile multipartFile = new MockMultipartFile("test.jpg", new FileInputStream(input));
+        MultipartFile multipartFile = new MockMultipartFile("test.jpg", Files.newInputStream(input.toPath()));
 
         File output = new File("C:/Users/Administrator/Desktop/test2.jpg");
         FileUtils.copyInputStreamToFile(multipartFile.getInputStream(), output);
 
-        Map<String, Object> map = new LinkedHashMap<>();
-        return map;
+        return new LinkedHashMap<>();
     }
 
 }
