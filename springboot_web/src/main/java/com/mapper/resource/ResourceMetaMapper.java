@@ -6,7 +6,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.model.resource.Resource;
 import com.model.resource.ResourceMeta;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ResourceMetaMapper extends BaseMapper<ResourceMeta> {
 
     @Select({

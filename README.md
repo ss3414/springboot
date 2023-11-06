@@ -24,9 +24,8 @@ MyPerf4J<br>
 ③springboot_adminclient<br>
 客户端依赖+配置<br>
 
-# springboot_aop
-①AOP（面向切面编程）<br>
-②AOP：记录日志/捕获异常/校验<br>
+# springboot_api
+接口封装+参数校验+异常处理（@ControllerAdvice）+接口限流<br>
 
 # springboot_async
 ①异步<br>
@@ -62,12 +61,6 @@ Dockerfile（生产环境配置）<br>
 Maven Docker插件将项目推送到Docker仓库<br>
 ④Docker Compose<br>
 
-# springboot_exception
-①异常处理<br>
-②归档<br>
-@RestControllerAdvice注解（Handler增强）<br>
-@Advice注解只能用于Spring Web，可以使用AOP将异常处理扩大到非Web领域<br>
-
 # springboot_job
 xxl-job（分布式任务）<br>
 
@@ -100,7 +93,6 @@ http://127.0.0.1/discovery/get?serviceName=example <br>
 ②归档<br>
 HTML不支持put/delete<br>
 第三方swagger2 SpringBoot+@EnableSwagger2Doc<br>
-（xDoc报错）<br>
 
 # springboot_task
 ①定时任务<br>
@@ -108,20 +100,13 @@ HTML不支持put/delete<br>
 ③Quartz+数据库（MBP）<br>
 
 # springboot_test
-Test启动Spring容器<br>
-
-# springboot_tree
-①AOP查看方法调用链<br>
-②spring-project-tree<br>
-spring-project-tree包含thymeleaf依赖，父项目使用thymeleaf会报错（父项目使用freemarker）<br>
-@EnableProjectTree AOP切面表达式（不能包含Application）<br>
+①Test启动Spring容器<br>
+②Jasypt加密<br>
+mvn jasypt:encrypt -D jasypt.encryptor.password=password <br>
+mvn jasypt:decrypt  -D jasypt.encryptor.password=password <br>
 
 # springboot_undertow
 ①Undertow替换Tomcat<br>
-
-# springboot_validate
-①表单验证<br>
-②spring-boot-starter-web/spring-boot-starter-validation均包含hibernate-validator依赖<br>
 
 # springboot_web
 ①Web<br>

@@ -21,7 +21,7 @@ public class MBPGenerator {
         /* 数据源 */
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
         dataSourceConfig.setUrl(url);
-        dataSourceConfig.setDriverName("com.mysql.jdbc.Driver");
+        dataSourceConfig.setDriverName("com.mysql.cj.jdbc.Driver");
         dataSourceConfig.setUsername(username);
         dataSourceConfig.setPassword(password);
         autoGenerator.setDataSource(dataSourceConfig);

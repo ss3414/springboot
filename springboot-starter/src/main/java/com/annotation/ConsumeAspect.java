@@ -1,12 +1,11 @@
 package com.annotation;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -14,11 +13,10 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Slf4j
 @Aspect
 @Component
 public class ConsumeAspect {
-
-    private static final Logger logger = LoggerFactory.getLogger(ConsumeAspect.class);
 
     @Pointcut("@annotation(com.annotation.Consume)")
     public void consume() {
@@ -51,7 +49,7 @@ public class ConsumeAspect {
                 String consumeTime = String.valueOf(duration.toMillis());
                 msg = String.format("%s %s~%s 耗时：%s毫秒", name, beginTime, endTime, consumeTime);
             }
-            logger.info(msg);
+            log.info(msg);
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }

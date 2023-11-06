@@ -14,7 +14,7 @@ spring:
       url: jdbc:mysql://127.0.0.1:3306/untitled?useSSL=false&characterEncoding=utf-8
       username: root
       password: 2468
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       # Druid监控
       stat-view-servlet:
         enabled: true

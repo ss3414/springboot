@@ -94,8 +94,7 @@ public class ListController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Map<String, Object> map = new LinkedHashMap<>();
-        return map;
+        return new LinkedHashMap<>();
     }
 
 }

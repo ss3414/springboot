@@ -6,7 +6,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.model.type.Type;
 import com.model.type.TypeMeta;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface TypeMetaMapper extends BaseMapper<TypeMeta> {
 
     @Select({

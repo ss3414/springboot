@@ -3,9 +3,11 @@ package com;
 import com.controller.IndexController;
 import com.dao.UserDao;
 import com.model.User;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -26,6 +28,7 @@ import java.util.Optional;
  * ①JUnit4：@SpringBootTest+@RunWith
  * ②JUnit5：@SpringBootTest+@ExtendWith
  * */
+@Slf4j
 @SpringBootTest
 //@RunWith(SpringRunner.class)
 @ExtendWith(SpringExtension.class)
@@ -34,14 +37,14 @@ public class ApplicationTest {
     @Autowired
     private UserDao userDao;
 
-    @Test
+    //    @Test
     public void test() {
         Optional<User> result = userDao.findById(1L);
         User user = new User();
         if (result.isPresent()) {
             user = result.get();
         }
-        System.out.println(user);
+        log.info(user.toString());
     }
 
     /************************************************************分割线************************************************************/
@@ -60,6 +63,17 @@ public class ApplicationTest {
                 .andExpect(MockMvcResultMatchers.status().isOk()) /* 正常响应 */
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
+    }
+
+    /************************************************************分割线************************************************************/
+    /* 测试Jasypt */
+
+    @Value("${spring.datasource.password}")
+    private String password;
+
+    @Test
+    public void test3() {
+        log.info("password:{}", password);
     }
 
 }
