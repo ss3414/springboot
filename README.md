@@ -103,7 +103,7 @@ HTML不支持put/delete<br>
 ①Test启动Spring容器<br>
 ②Jasypt加密<br>
 mvn jasypt:encrypt -D jasypt.encryptor.password=password <br>
-mvn jasypt:decrypt  -D jasypt.encryptor.password=password <br>
+mvn jasypt:decrypt -D jasypt.encryptor.password=password <br>
 
 # springboot_undertow
 ①Undertow替换Tomcat<br>
