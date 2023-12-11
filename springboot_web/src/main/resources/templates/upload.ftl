@@ -72,14 +72,14 @@
 
 <#--<script>-->
 <#--    function test() {-->
-<#--        // window.open("/download?CN=idea使用教程2017-06-01.pdf", "newwindow", "alwaysRaised=no") /* alwaysRaised=yes新窗口下载且不关闭 */-->
-<#--        window.open("/download?CN=idea使用教程2017-06-01.pdf")-->
+<#--        // window.open("/download?CN=test.pdf", "newwindow", "alwaysRaised=no") /* alwaysRaised=yes新窗口下载且不关闭 */-->
+<#--        window.open("/download?CN=test.pdf")-->
 <#--    }-->
 <#--</script>-->
 
 <#--<a href="/download?CN=表格.xlsx">表格.xlsx</a>-->
 <#--<a href="/download2?CN=表格2.xlsx">表格2.xlsx</a>-->
-<#--<a href="/download3?CN=idea使用教程2017-06-01.pdf">idea使用教程2017-06-01.pdf</a>-->
+<#--<a href="/download3?CN=test.pdf">test.pdf</a>-->
 <#--<a href="javascript:void(0)" onclick="test()">下载（新窗口）</a>-->
 
 </body>

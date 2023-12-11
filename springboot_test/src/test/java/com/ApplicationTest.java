@@ -30,7 +30,6 @@ import java.util.Optional;
  * */
 @Slf4j
 @SpringBootTest
-//@RunWith(SpringRunner.class)
 @ExtendWith(SpringExtension.class)
 public class ApplicationTest {
 

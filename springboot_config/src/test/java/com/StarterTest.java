@@ -1,7 +1,6 @@
 package com;
 
 import com.util.JDBCUtil;
-import com.util.MBPGenerator;
 import com.util.StarterUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,20 +32,6 @@ public class StarterTest {
     //    @Test
     public void test3() {
         JDBCUtil.selectOneColumn("SHOW TABLES FROM untitled");
-    }
-
-    //    @Test
-    public void test4() {
-        String[] tableArray = {""};
-        MBPGenerator.generate(
-                "jdbc:mysql://127.0.0.1:3306/untitled?useSSL=false&characterEncoding=utf-8",
-                "root",
-                "2468",
-                "C:/Users/Administrator/IdeaProjects(2)/untitled", /* Idea Project */
-                "springboot_editor", /* 项目 */
-                "test", /* 包名 */
-                "com.module", /* 父包名 */
-                tableArray); /* 表名 */
     }
 
 }

@@ -61,9 +61,6 @@ Dockerfile（生产环境配置）<br>
 Maven Docker插件将项目推送到Docker仓库<br>
 ④Docker Compose<br>
 
-# springboot_job
-xxl-job（分布式任务）<br>
-
 # springboot_mail
 ①邮件<br>
 ②归档<br>
@@ -140,4 +137,3 @@ Starter配置文件spring.factories<br>
 ③工具<br>
 Consume（统计耗时）<br>
 JDBCUtil（JDBC）<br>
-MBPGenerator（MBP代码生成器）<br>

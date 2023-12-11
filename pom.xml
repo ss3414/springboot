@@ -11,7 +11,6 @@
         <module>springboot_config</module>
         <module>springboot_cors</module>
         <module>springboot_docker</module>
-        <module>springboot_job</module>
         <module>springboot_mail</module>
         <module>springboot_nacos</module>
         <module>springboot_quickstart</module>

@@ -18,7 +18,8 @@ import java.util.stream.IntStream;
 public class ApplicationTest {
 
     @Test
-    @SneakyThrows /* 等价于try catch代码 */ public void test() {
+    @SneakyThrows
+    public void test() {
         int clientSize = 10;
         CountDownLatch countDown = new CountDownLatch(clientSize);
         ExecutorService threadPool = Executors.newFixedThreadPool(clientSize);

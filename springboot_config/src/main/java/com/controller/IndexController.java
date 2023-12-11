@@ -2,6 +2,7 @@ package com.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.model.User;
+import lombok.SneakyThrows;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -97,15 +98,12 @@ public class IndexController {
      * ②生产环境：jar:file:/app.jar!/BOOT-INF/classes!/
      * ③不要用文件输入流读取配置，直接用ClassLoader().getResourceAsStream读取配置
      * */
+    @SneakyThrows
     @RequestMapping("/resource")
     public Map<String, Object> resource() {
         Map<String, Object> map = new LinkedHashMap<>();
-        try {
-            Properties properties = new Properties();
-            properties.load(IndexController.class.getResourceAsStream("/application.properties"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Properties properties = new Properties();
+        properties.load(IndexController.class.getResourceAsStream("/application.properties"));
         return map;
     }
 

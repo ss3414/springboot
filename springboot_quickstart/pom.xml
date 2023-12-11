@@ -51,8 +51,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId><!-- 打包后包含.jar和.original两个文件 -->
-                <!-- 只有1.4.2版插件支持JSP -->
-                <!--<version>1.4.2.RELEASE</version>-->
             </plugin>
         </plugins>
     </build>

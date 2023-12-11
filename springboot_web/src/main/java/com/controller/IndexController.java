@@ -124,7 +124,7 @@ public class IndexController {
     public void displayPDF(HttpServletResponse response, Integer id) throws IOException {
 //        /* 读取本地文件 */
 //        System.out.println(id);
-//        File file = new File("同步/文档/Idea/idea使用教程2017-06-01.pdf");
+//        File file = new File("C:/Users/Administrator/Desktop/test.pdf");
 //        FileInputStream fileInputStream = new FileInputStream(file);
 //        response.setContentType("multipart/form-data");
 //        OutputStream outputStream = response.getOutputStream();
@@ -352,7 +352,7 @@ public class IndexController {
     }
 
     @GetMapping("/download3")
-    public ResponseEntity<byte[]> download3(@RequestParam(defaultValue = "idea使用教程2017-06-01.pdf") String CN) {
+    public ResponseEntity<byte[]> download3(@RequestParam(defaultValue = "test.pdf") String CN) {
         try {
 //            String filename = String.format("同步/文档/Idea/%s", CN);
             String filename = String.format("/home/fantasy/Downloads/同步/文档/Idea/%s", CN);
