@@ -1,0 +1,13 @@
+# ************************************************************分割线************************************************************
+# ①同时存在yaml/yml和properties时，优先使用properties
+# ②键值对间有空格，否则SpringBoot无法解析
+
+server:
+  port: 80
+
+# 实体类
+model:
+  user:
+    id: 1
+    name: name1
+    password: ${model.user.name}${model.user.id}

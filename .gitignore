@@ -4,8 +4,5 @@
 /**/.gradle/
 /**/build/
 
-# 项目
-/springboot_mail/
-
 # 文件
 *.iml

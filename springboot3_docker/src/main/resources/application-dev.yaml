@@ -1,0 +1,18 @@
+# ************************************************************分割线************************************************************
+
+server:
+  port: 80
+
+# 数据库
+# ①docker_mysql（MySQL Docker容器的别名）
+# ②开发环境下通过127.0.0.1:3306访问docker_mysql（端口映射）
+# ③生产环境下通过docker_mysql:3306访问docker_mysql（容器间通信）
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/untitled?useSSL=false&characterEncoding=utf-8
+    username: root
+    password: 2468
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database: mysql
+    show-sql: true

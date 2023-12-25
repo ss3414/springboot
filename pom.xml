@@ -3,25 +3,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modules>
+        <module>springboot3_actuator</module>
+        <module>springboot3_api</module>
+        <module>springboot3_async</module>
+        <module>springboot3_config</module>
+        <module>springboot3_cors</module>
+        <module>springboot3_docker</module>
+        <module>springboot3_event</module>
+        <module>springboot3_nacos</module>
+        <module>springboot3_quickstart</module>
+        <module>springboot3_runner</module>
+        <module>springboot3_task</module>
+        <module>springboot3_test</module>
+        <module>springboot3_web</module>
+        <module>springboot3_websocket</module>
         <module>springboot-starter</module>
-        <module>springboot_actuator</module>
-        <module>springboot_admin</module>
-        <module>springboot_api</module>
-        <module>springboot_async</module>
-        <module>springboot_config</module>
-        <module>springboot_cors</module>
-        <module>springboot_docker</module>
-        <module>springboot_mail</module>
-        <module>springboot_nacos</module>
-        <module>springboot_quickstart</module>
-        <module>springboot_runner</module>
-        <module>springboot_swagger</module>
-        <module>springboot_task</module>
-        <module>springboot_test</module>
-        <module>springboot_undertow</module>
-        <module>springboot_web</module>
-        <module>springboot_websocket</module>
-        <module>springboot_xss</module>
     </modules>
 
     <modelVersion>4.0.0</modelVersion>
@@ -32,8 +28,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>17</java.version>
     </properties>
 
 </project>

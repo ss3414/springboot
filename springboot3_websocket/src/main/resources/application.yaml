@@ -1,0 +1,11 @@
+# ************************************************************分割线************************************************************
+
+server:
+  port: 80
+
+# 模板引擎
+spring:
+  freemarker:
+    suffix: .ftl
+    template-loader-path: classpath:/templates
+    request-context-attribute: request
