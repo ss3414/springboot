@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.*;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -67,9 +68,6 @@ public class IndexController {
 
     /************************************************************分割线************************************************************/
 
-//    @Autowired
-//    private RestTemplate restTemplate;
-
     @GetMapping("/json")
     public ModelAndView json() {
         Map<String, Object> map = new LinkedHashMap<>();
@@ -98,13 +96,6 @@ public class IndexController {
         map.put("status", 1000);
         return map;
     }
-
-//    @GetMapping("/rest")
-//    public Map<String, Object> rest() {
-//        String result = restTemplate.getForObject("http://127.0.0.1:8080/responseJSON", String.class);
-//        System.out.println(result);
-//        return new LinkedHashMap<>();
-//    }
 
     /************************************************************分割线************************************************************/
 
@@ -194,7 +185,7 @@ public class IndexController {
     private void recursive(List<Node> flatList) {
         for (Node node : flatList) {
             List<Node> childrenList = nodeMapper.selectList(new QueryWrapper<Node>().lambda().eq(Node::getParentId, node.getId()));
-            if (childrenList.size() > 0) {
+            if (!childrenList.isEmpty()) {
                 recursive(childrenList);
             }
             node.setChildrenList(childrenList);
@@ -211,8 +202,8 @@ public class IndexController {
 
     @PostMapping("/singleUpload")
     public Map<String, Object> singleUpload(
-        Form form,
-        @RequestParam("uploadFile") MultipartFile uploadFile) {
+            Form form,
+            @RequestParam("uploadFile") MultipartFile uploadFile) {
         Map<String, Object> map = new LinkedHashMap<>();
         if (!uploadFile.isEmpty()) {
             try {
@@ -233,8 +224,8 @@ public class IndexController {
 
     @PostMapping("/batchUpload")
     public Map<String, Object> batchUpload(
-        Form form,
-        @RequestParam("uploadFiles") MultipartFile[] uploadFiles) {
+            Form form,
+            @RequestParam("uploadFiles") MultipartFile[] uploadFiles) {
         Map<String, Object> map = new LinkedHashMap<>();
         if (uploadFiles.length > 0) {
             try {
@@ -254,8 +245,8 @@ public class IndexController {
 
     @GetMapping("/download")
     public void download(
-        HttpServletResponse response,
-        @RequestParam(defaultValue = "表格.xlsx") String CN) {
+            HttpServletResponse response,
+            @RequestParam(defaultValue = "表格.xlsx") String CN) {
         try {
 //            OutputStream outputStream = response.getOutputStream();
 //            response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(CN, "UTF-8"));
@@ -277,7 +268,7 @@ public class IndexController {
             outputStream.write(byteArrayOutputStream.toByteArray());
             outputStream.flush();
             response.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE);
-            response.addHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + URLEncoder.encode("test.zip", "UTF-8"));
+            response.addHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + URLEncoder.encode("test.zip", StandardCharsets.UTF_8));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -297,14 +288,14 @@ public class IndexController {
             InputStreamResource resource = new InputStreamResource(new ByteArrayInputStream(outputStream.toByteArray()));
             outputStream.close();
             ContentDisposition contentDisposition = ContentDisposition.builder("attachment")
-                .filename(URLEncoder.encode(CN, "UTF-8"))
-                .build();
+                    .filename(URLEncoder.encode(CN, StandardCharsets.UTF_8))
+                    .build();
             HttpHeaders headers = new HttpHeaders();
             headers.setContentDisposition(contentDisposition);
             return ResponseEntity.ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .body(resource);
+                    .headers(headers)
+                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                    .body(resource);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -318,7 +309,7 @@ public class IndexController {
             File file = new File(filename);
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-            headers.setContentDispositionFormData("attachment", URLEncoder.encode(CN, "UTF-8"));
+            headers.setContentDispositionFormData("attachment", URLEncoder.encode(CN, StandardCharsets.UTF_8));
             Map map = new LinkedHashMap();
             map.put("name", "name123");
             headers.add("Content", JSONObject.toJSONString(map));

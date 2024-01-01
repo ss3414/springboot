@@ -15,7 +15,6 @@
     </tr>
     <tr>
         <td><a href="/json">JSON</a></td>
-        <td><a href="/rest">RestTemplate</a></td>
     </tr>
     <tr>
         <td><a href="/pdfjs">PDF在线浏览</a></td>

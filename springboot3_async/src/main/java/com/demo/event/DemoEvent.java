@@ -1,18 +1,16 @@
-package com.demo;
+package com.demo.event;
 
+import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 
+@Getter
 public class DemoEvent extends ApplicationEvent {
 
     private String message;
 
-    public DemoEvent(Object source, String message) {
-        super(source);
+    public DemoEvent(String message) {
+        super(message);
         this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
 }

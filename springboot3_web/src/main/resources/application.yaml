@@ -1,0 +1,24 @@
+# ************************************************************分割线************************************************************
+
+server:
+  port: 80
+  tomcat:
+    max-http-form-post-size: 1024MB
+
+spring:
+  # FreeMarker
+  freemarker:
+    suffix: .ftl
+    template-loader-path: classpath:/templates
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/untitled?useSSL=false&characterEncoding=utf-8
+    username: root
+    password: 2468
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+## SSL
+#server.ssl.key-alias=test
+#server.ssl.key-password=123456
+#server.ssl.key-store=classpath:test.jks
+#server.ssl.key-store-provider=SUN
+#server.ssl.key-store-type=JKS

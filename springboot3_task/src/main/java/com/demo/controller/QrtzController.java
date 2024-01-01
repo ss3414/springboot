@@ -48,9 +48,10 @@ public class QrtzController {
 
             /* fixme 异常/校验 */
             String exceptionName = e.getClass().getName();
-            switch (exceptionName) {
-                case "org.quartz.ObjectAlreadyExistsException" -> System.out.println("jobName已存在");
-                default -> System.out.println("其他异常");
+            if (exceptionName.equals("org.quartz.ObjectAlreadyExistsException")) {
+                System.out.println("jobName已存在");
+            } else {
+                System.out.println("其他异常");
             }
         }
         return new LinkedHashMap<>();

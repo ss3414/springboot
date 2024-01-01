@@ -9,7 +9,6 @@
         <module>springboot3_config</module>
         <module>springboot3_cors</module>
         <module>springboot3_docker</module>
-        <module>springboot3_event</module>
         <module>springboot3_nacos</module>
         <module>springboot3_quickstart</module>
         <module>springboot3_runner</module>

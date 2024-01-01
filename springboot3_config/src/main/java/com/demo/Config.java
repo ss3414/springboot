@@ -1,7 +1,6 @@
 package com.demo;
 
 import com.alibaba.fastjson.JSONObject;
-import com.demo.model.User;
 import com.demo.util.StarterUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;

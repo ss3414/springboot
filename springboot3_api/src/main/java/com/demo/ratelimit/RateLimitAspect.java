@@ -31,7 +31,7 @@ public class RateLimitAspect {
 
         /* 获取指定方法的限流器 */
         RateLimiter rateLimiter = EXISTED_RATE_LIMITERS.computeIfAbsent(method.getName(), k -> RateLimiter.create(annotation.limit()));
-        if (rateLimiter != null && rateLimiter.tryAcquire()) {
+        if (rateLimiter.tryAcquire()) {
             return point.proceed();
         } else {
             throw new TestException("too many requests");

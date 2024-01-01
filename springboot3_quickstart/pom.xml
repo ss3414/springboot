@@ -59,6 +59,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId><!-- 打包后包含.jar和.original两个文件 -->
+                <version>3.1.5</version>
             </plugin>
         </plugins>
     </build>

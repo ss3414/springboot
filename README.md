@@ -19,11 +19,10 @@ MyPerf4J<br>
 # springboot3_async
 ①异步<br>
 ②@EnableAsync+@Async+Future<br>
-③使用@Async注解（已过时）<br>
-④归档<br>
-test：任意IO操作<br>
-client：网络请求（HttpClient）<br>
-service：ORM（MBP）<br>
+③归档<br>
+task：任意IO操作<br>
+client：网络请求<br>
+event：事件<br>
 
 # springboot3_config
 ①配置<br>
@@ -50,11 +49,8 @@ Dockerfile（生产环境配置）<br>
 Maven Docker插件将项目推送到Docker仓库<br>
 ④Docker Compose<br>
 
-# springboot3_event
-①事件<br>
-
 # springboot3_nacos
-①SpringBoot+Nacos<br>
+①Nacos（暂不支持springboot3）<br>
 ②配置管理<br>
 http://127.0.0.1/config/get <br>
 ③服务发现<br>
