@@ -2,33 +2,27 @@ package com.demo.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.demo.mapper.NodeMapper;
 import com.demo.model.Form;
-import com.demo.model.Node;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.*;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.*;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -51,13 +45,6 @@ public class IndexController {
 
     @PostMapping("/form")
     public Map<String, Object> form(Form form) {
-        return new LinkedHashMap<>();
-    }
-
-    /* fixme 接收AJAX发送的List */
-    @GetMapping("/formList")
-    public Map<String, Object> formList(String formListStr) {
-        List<Form> formList = JSON.parseArray(formListStr, Form.class);
         return new LinkedHashMap<>();
     }
 
@@ -116,12 +103,7 @@ public class IndexController {
 //        IOUtils.write(IOUtils.toByteArray(fileInputStream), outputStream);
 
         /* 下载并读取文件字节流 */
-        CloseableHttpClient client = HttpClients.createDefault();
-        String uri = "http://127.0.0.1/download2";
-        HttpGet get = new HttpGet(uri);
-        HttpResponse httpResponse = client.execute(get);
-        HttpEntity entity = httpResponse.getEntity();
-        InputStream inputStream = entity.getContent();
+        InputStream inputStream = new URL("http://127.0.0.1/download2").openStream();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         int length;
         byte[] buffer = new byte[1024];
@@ -130,67 +112,6 @@ public class IndexController {
         }
         OutputStream outputStream = response.getOutputStream();
         IOUtils.write(byteArrayOutputStream.toByteArray(), outputStream);
-    }
-
-    /************************************************************分割线************************************************************/
-
-    private static Integer count = 0;
-
-    /* synchronized锁 */
-    public synchronized Integer write() {
-        count++;
-        return count;
-    }
-
-    /* 测速 */
-    @GetMapping("/speed")
-    public Map<String, Object> speed() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
-        String date = format.format(new Date());
-        System.out.println(date + ":" + write());
-        Map<String, Object> map = new LinkedHashMap<>();
-        map.put("status", 1000);
-        return map;
-    }
-
-    /* 重置计数器 */
-    @GetMapping("/reset")
-    public ModelAndView reset() {
-        count = 0;
-        return new ModelAndView("redirect:/");
-    }
-
-    /************************************************************分割线************************************************************/
-
-    final List<Node> treeList = new ArrayList<>();
-
-    @Autowired
-    private NodeMapper nodeMapper;
-
-    /* 树形结构 */
-    @GetMapping("/tree")
-    public Map<String, Object> tree() {
-        /* fixme 查询单个节点 */
-//        Node root = nodeMapper.selectOne(new QueryWrapper<Node>().lambda().eq(Node::getId, 1)); /* 根节点 */
-        List<Node> flatList = nodeMapper.selectList(new QueryWrapper<>());
-        recursive(flatList);
-        treeList.removeIf(e -> e.getParentId() > 0);
-
-        Map<String, Object> map = new LinkedHashMap<>();
-        map.put("treeList", treeList);
-        return map;
-    }
-
-    /* 递归扁平转树形结构 */
-    private void recursive(List<Node> flatList) {
-        for (Node node : flatList) {
-            List<Node> childrenList = nodeMapper.selectList(new QueryWrapper<Node>().lambda().eq(Node::getParentId, node.getId()));
-            if (!childrenList.isEmpty()) {
-                recursive(childrenList);
-            }
-            node.setChildrenList(childrenList);
-            treeList.add(node);
-        }
     }
 
     /************************************************************分割线************************************************************/
@@ -209,7 +130,6 @@ public class IndexController {
             try {
                 String filename = uploadFile.getOriginalFilename();
                 uploadFile.transferTo(new File("C:/Users/Administrator/Desktop" + File.separator + filename));
-//                uploadFile.transferTo(new File("/home/fantasy/Desktop" + File.separator + filename));
                 map.put("status", 1000);
 
                 /* 在Spring中使用EasyExcel */
@@ -274,36 +194,8 @@ public class IndexController {
         }
     }
 
-    /*
-     * ①可以将数据临时放到Redis中，让前端实现等待效果
-     * ②幂等性：在生成数据的过程中，将同一个客户端的多个请求视为一个
-     * */
     @GetMapping("/download2")
-    public ResponseEntity<InputStreamResource> download2(@RequestParam(defaultValue = "表格.xlsx") String CN) {
-        try {
-            XSSFWorkbook workbook = new XSSFWorkbook();
-            workbook.createSheet("Sheet1");
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            workbook.write(outputStream);
-            InputStreamResource resource = new InputStreamResource(new ByteArrayInputStream(outputStream.toByteArray()));
-            outputStream.close();
-            ContentDisposition contentDisposition = ContentDisposition.builder("attachment")
-                    .filename(URLEncoder.encode(CN, StandardCharsets.UTF_8))
-                    .build();
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentDisposition(contentDisposition);
-            return ResponseEntity.ok()
-                    .headers(headers)
-                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                    .body(resource);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return ResponseEntity.badRequest().build();
-    }
-
-    @GetMapping("/download3")
-    public ResponseEntity<byte[]> download3(@RequestParam(defaultValue = "test.pdf") String CN) {
+    public ResponseEntity<byte[]> download2(@RequestParam(defaultValue = "test.pdf") String CN) {
         try {
             String filename = String.format("%s", CN);
             File file = new File(filename);
@@ -328,7 +220,6 @@ public class IndexController {
 
         File output = new File("C:/Users/Administrator/Desktop/test2.jpg");
         FileUtils.copyInputStreamToFile(multipartFile.getInputStream(), output);
-
         return new LinkedHashMap<>();
     }
 

@@ -23,7 +23,6 @@
         </tr>
         <tr>
             <td><input type="button" value="test" onclick="test()"></td>
-            <td><input type="button" value="test2" onclick="test2()"></td>
         </tr>
     </table>
 </form>
@@ -71,30 +70,6 @@
             dataType: "json",
             success: function (response) {
                 console.log(response)
-            }
-        })
-    }
-
-    function test2() {
-        let formList = [
-            {
-                "name": "name1",
-                "pwdList": ["pwd1", "pwd2"]
-            },
-            {
-                "name": "name1",
-                "pwdList": ["pwd1", "pwd2"]
-            }
-        ]
-        $.ajax({
-            type: "post",
-            url: "/formList",
-            data: {
-                // formList: formList,
-                formListStr: JSON.stringify(formList),
-            },
-            dataType: "json",
-            success: function (response) {
             }
         })
     }

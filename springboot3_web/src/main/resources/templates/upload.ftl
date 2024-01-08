@@ -78,8 +78,7 @@
 <#--</script>-->
 
 <#--<a href="/download?CN=表格.xlsx">表格.xlsx</a>-->
-<#--<a href="/download2?CN=表格2.xlsx">表格2.xlsx</a>-->
-<#--<a href="/download3?CN=test.pdf">test.pdf</a>-->
+<#--<a href="/download2?CN=test.pdf">test.pdf</a>-->
 <#--<a href="javascript:void(0)" onclick="test()">下载（新窗口）</a>-->
 
 </body>

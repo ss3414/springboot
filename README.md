@@ -78,12 +78,9 @@ mvn jasypt:decrypt -D jasypt.encryptor.password=password <br>
 # springboot3_web
 ①Web<br>
 ②归档<br>
-测速<br>
 JSON<br>
 上传下载<br>
-树形结构<br>
 读取Excel<br>
-超长字符串<br>
 PDF在线浏览<br>
 
 # springboot3_websocket

@@ -27,7 +27,10 @@ public class AsyncConfig implements AsyncConfigurer {
         return taskExecutor;
     }
 
-    /* 异常处理 */
+    /*
+    * fixme 异常处理
+    * 出错应当让数据库回滚
+    * */
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return (throwable, method, objects) -> {

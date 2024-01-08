@@ -20,13 +20,6 @@
         <td><a href="/pdfjs">PDF在线浏览</a></td>
     </tr>
     <tr>
-        <td><a href="/speed">测速</a></td>
-        <td><a href="/reset">重置计数器</a></td>
-    </tr>
-    <tr>
-        <td><a href="/tree">树形结构</a></td>
-    </tr>
-    <tr>
         <td><a href="/upload">上传下载</a></td>
         <td><a href="/convert">File/MultipartFile</a></td>
     </tr>
