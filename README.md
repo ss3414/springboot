@@ -14,7 +14,7 @@ MyPerf4J<br>
 不要使用常见包名<br>
 
 # springboot3_api
-接口封装+参数校验+异常处理（@ControllerAdvice）+接口限流<br>
+接口封装+参数校验+异常处理（@RestControllerAdvice）+接口限流<br>
 
 # springboot3_async
 ①异步<br>
