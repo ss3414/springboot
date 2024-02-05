@@ -21,7 +21,6 @@
     </tr>
     <tr>
         <td><a href="/upload">上传下载</a></td>
-        <td><a href="/convert">File/MultipartFile</a></td>
     </tr>
 </table>
 

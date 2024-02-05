@@ -13,9 +13,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.concurrent.CountDownLatch;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.IntStream;
@@ -73,18 +76,26 @@ public class API {
         return ResponseResult.success();
     }
 
+    /* 异步请求测试接口限流 */
     @SneakyThrows
     @RequestMapping("/count")
     public ResponseResult<String> count() {
-        int clientSize = 10;
-        CountDownLatch countDown = new CountDownLatch(clientSize);
-        ExecutorService threadPool = Executors.newFixedThreadPool(clientSize);
-        IntStream.range(0, clientSize).forEach(i -> threadPool.submit(() -> {
-            RestTemplate restTemplate = new RestTemplate();
-            restTemplate.getForObject("http://127.0.0.1/limit", ResponseResult.class);
-            countDown.countDown();
+        int count = 10;
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1/limit"))
+                .build();
+        ExecutorService threadPool = Executors.newFixedThreadPool(count);
+        IntStream.range(0, count).forEach(i -> threadPool.submit(() -> {
+            CompletableFuture<HttpResponse<String>> future = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+            future.whenComplete((response, throwable) -> {
+                if (throwable != null) {
+                    throwable.printStackTrace();
+                } else {
+                    log.info(response.body());
+                }
+            }).join();
         }));
-        countDown.await();
         threadPool.shutdown();
         return ResponseResult.success();
     }

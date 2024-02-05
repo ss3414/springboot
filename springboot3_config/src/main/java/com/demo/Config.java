@@ -1,6 +1,7 @@
 package com.demo;
 
 import com.alibaba.fastjson.JSONObject;
+import com.demo.annotation.Consume;
 import com.demo.util.StarterUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
@@ -57,11 +58,14 @@ public class Config {
     @Autowired
     private StarterUtil starterUtil;
 
+    @Consume
     @RequestMapping("/starter")
     public Map starter() {
         starterUtil.test();
         return new LinkedHashMap();
     }
+
+    /************************************************************分割线************************************************************/
 
     @Autowired
     private Environment environment;

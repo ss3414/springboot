@@ -10,7 +10,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -210,17 +209,6 @@ public class IndexController {
             e.printStackTrace();
         }
         return null;
-    }
-
-    /* File/MultipartFile相互转换 */
-    @GetMapping("/convert")
-    public Map<String, Object> convert() throws IOException {
-        File input = new File("C:/Users/Administrator/Desktop/test.jpg");
-        MultipartFile multipartFile = new MockMultipartFile("test.jpg", Files.newInputStream(input.toPath()));
-
-        File output = new File("C:/Users/Administrator/Desktop/test2.jpg");
-        FileUtils.copyInputStreamToFile(multipartFile.getInputStream(), output);
-        return new LinkedHashMap<>();
     }
 
 }
