@@ -18,9 +18,6 @@ spring:
         enabled: true
         url-pattern: /druid/*
 
-logging:
-  config: classpath:logback-spring.xml
-
 # actuator监控
 management:
   endpoints:

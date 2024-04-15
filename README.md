@@ -4,14 +4,7 @@ SpringBoot<br>
 ************************************************************************************************************************
 
 # springboot3_actuator
-①日志+监控<br>
-②日志<br>
-SSM：Tomcat+项目日志（Log4J）<br>
-SpringBoot：项目日志（LogBack+SLF4J）<br>
-其他：Druid/AOP<br>
-③监控<br>
-MyPerf4J<br>
-不要使用常见包名<br>
+监控+Druid<br>
 
 # springboot3_api
 接口封装+参数校验+异常处理（@RestControllerAdvice）+接口限流<br>
@@ -48,6 +41,10 @@ Docker项目+Docker数据库<br>
 Dockerfile（生产环境配置）<br>
 Maven Docker插件将项目推送到Docker仓库<br>
 ④Docker Compose<br>
+
+# springboot3_log
+①日志<br>
+②MDC（Mapped Diagnostic Context/日志追踪）<br>
 
 # springboot3_nacos
 ①Nacos（暂不支持springboot3）<br>
@@ -97,4 +94,4 @@ PDF在线浏览<br>
 核心服务类StarterUtil<br>
 Starter配置文件spring.factories<br>
 ③工具<br>
-Consume（统计耗时）<br>
+Consume（AOP统计耗时）<br>

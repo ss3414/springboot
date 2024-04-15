@@ -16,7 +16,12 @@ public class ResponseResult<T> {
     private T data;
 
     public static <T> ResponseResult<T> success(T data) {
-        return ResponseResult.<T>builder().status(ResponseStatus.SUCCESS.getCode()).message(ResponseStatus.SUCCESS.getDescription()).timestamp(System.currentTimeMillis()).data(data).build();
+        return ResponseResult.<T>builder()
+                .status(ResponseStatus.SUCCESS.getCode())
+                .message(ResponseStatus.SUCCESS.getDescription())
+                .timestamp(System.currentTimeMillis())
+                .data(data)
+                .build();
     }
 
     public static <T> ResponseResult<T> success() {
@@ -24,7 +29,12 @@ public class ResponseResult<T> {
     }
 
     public static <T> ResponseResult<T> fail(T data) {
-        return ResponseResult.<T>builder().status(ResponseStatus.FAIL.getCode()).message(ResponseStatus.FAIL.getDescription()).timestamp(System.currentTimeMillis()).data(data).build();
+        return ResponseResult.<T>builder()
+                .status(ResponseStatus.FAIL.getCode())
+                .message(ResponseStatus.FAIL.getDescription())
+                .timestamp(System.currentTimeMillis())
+                .data(data)
+                .build();
     }
 
     public static <T> ResponseResult<T> fail() {

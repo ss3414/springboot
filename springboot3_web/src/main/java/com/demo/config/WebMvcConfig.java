@@ -1,6 +1,6 @@
 package com.demo.config;
 
-import com.demo.interceptor.MyInterceptor;
+import com.demo.interceptor.DemoInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -25,7 +25,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     /* 拦截器 */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(new DemoInterceptor()).addPathPatterns("/**");
     }
 
     /* 查看所有HttpMessageConverter */
