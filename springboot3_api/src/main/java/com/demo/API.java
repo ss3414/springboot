@@ -1,6 +1,8 @@
 package com.demo;
 
+import com.alibaba.fastjson.JSON;
 import com.demo.exception.TestException;
+import com.demo.model.Param;
 import com.demo.model.User;
 import com.demo.ratelimit.RateLimit;
 import com.demo.response.ResponseResult;
@@ -11,6 +13,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,6 +51,7 @@ public class API {
         return ResponseResult.fail();
     }
 
+    /* @Valid与@Validated区别不大 */
     @RequestMapping("/form")
     public ResponseResult<User> form(@Valid User user) {
         return ResponseResult.success(user);
@@ -97,6 +102,16 @@ public class API {
             }).join();
         }));
         threadPool.shutdown();
+        return ResponseResult.success();
+    }
+
+    /* 嵌套JSON参数 */
+    @RequestMapping("/param")
+    public ResponseResult<String> param(
+            @RequestBody Param param,
+            @RequestHeader(value = "language", defaultValue = "english") String language) {
+        log.info(JSON.toJSONString(param));
+        log.info(language);
         return ResponseResult.success();
     }
 
