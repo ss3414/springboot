@@ -211,4 +211,18 @@ public class IndexController {
         return null;
     }
 
+    @GetMapping("/download3")
+    public ResponseEntity<byte[]> download3() {
+        try {
+            File file = new File("C:/Users/Administrator/Desktop/test.mp3");
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+            headers.setContentDispositionFormData("attachment", URLEncoder.encode("test.mp3", StandardCharsets.UTF_8));
+            return new ResponseEntity<>(FileUtils.readFileToByteArray(file), headers, HttpStatus.OK);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
